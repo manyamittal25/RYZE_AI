@@ -288,45 +288,34 @@ const Features = () => {
     {
       title: '24/7 Performance Audits',
       description: 'AI continuously monitors your campaigns, identifying wasted spend, optimization opportunities, and performance issues.',
-      size: 'large' as const,
       visualization: PerformanceAuditsViz,
     },
     {
       title: 'Automated Budget Reallocation',
       description: 'AI automatically shifts budget from underperforming campaigns to winners, maximizing your ROAS.',
-      size: 'medium' as const,
       visualization: BudgetReallocationViz,
     },
     {
       title: 'Keyword Optimization',
       description: 'AI identifies and pauses low-performing keywords, adds negative keywords, and suggests new high-value terms.',
-      size: 'medium' as const,
       visualization: KeywordOptimizationViz,
     },
     {
       title: 'Smart Reporting',
       description: 'Automated reports that build themselves. Get insights on performance, trends, and recommendations without manual work.',
-      size: 'large' as const,
       visualization: SmartReportingViz,
     },
     {
       title: 'AI Creative Generation',
       description: 'Generate high-performing ad creatives automatically. Test multiple variations and let AI optimize for best results.',
-      size: 'medium' as const,
       visualization: AICreativeGenerationViz,
     },
     {
       title: 'AI Chat for Ads',
       description: 'Ask questions in plain English: "Why did ROAS drop?" or "Which campaigns are wasting spend?" Get instant insights.',
-      size: 'medium' as const,
       visualization: AIChatViz,
     },
   ]
-
-  const getCardSize = (size: 'large' | 'medium') => {
-    if (size === 'large') return 'md:col-span-2 md:row-span-2'
-    return 'md:col-span-1 md:row-span-1'
-  }
 
   const getAdjacentIndices = (index: number) => {
     const adjacent: number[] = []
@@ -384,13 +373,13 @@ const Features = () => {
           </motion.p>
         </motion.div>
 
-        {/* Bento Grid */}
+        {/* Simple 3x2 Grid */}
         <motion.div
           ref={ref}
           initial="hidden"
           animate={isInView ? 'visible' : 'hidden'}
           variants={staggerContainer}
-          className="grid grid-cols-1 md:grid-cols-3 gap-6 auto-rows-auto"
+          className="grid grid-cols-1 md:grid-cols-3 gap-6"
         >
           {features.map((feature, index) => {
             const isHovered = hoveredIndex === index
@@ -402,7 +391,7 @@ const Features = () => {
               <motion.div
                 key={index}
                 variants={fadeInUp}
-                className={`${getCardSize(feature.size)} min-h-[280px] transform-gpu`}
+                className="min-h-[280px] transform-gpu"
                 onMouseEnter={() => setHoveredIndex(index)}
                 onMouseLeave={() => setHoveredIndex(null)}
                 animate={{
